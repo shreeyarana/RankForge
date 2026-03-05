@@ -69,7 +69,7 @@ class RollingAverageAnalytics(APIView):
             s.date,
             ROUND(
                 AVG(s.score) OVER (
-                    PARTITION BY s.user_id
+                    PARTITION BY s.user_id, s.game
                     ORDER BY s.date
                     ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
                 ), 2
